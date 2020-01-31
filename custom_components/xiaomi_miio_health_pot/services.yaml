@@ -4,7 +4,7 @@
 #   @Description   : 
 #   @Date          : 2019-09-07 02:58:01
 #   @LastEditors   : fineemb
-#   @LastEditTime  : 2020-01-31 21:43:16
+#   @LastEditTime  : 2020-01-31 23:10:39
 # #############################################################################
 
 
@@ -35,6 +35,9 @@ set_work:
     keep_time: 
       description: 保温时长,单位为小时1-12
       example: '12'
+    timestamp: 
+      description: 预约指定开始时间的时间戳
+      example: '1580483303'
 delete_modes:
   description: 删除指定自定义模式
   fields:
@@ -62,7 +65,7 @@ set_mode:
     id: 
       description: 模式id,可以有7个自定义模式.1-8
       example: '1'
-    temp: 
+    heat: 
       description: 火力,1-99
       example: '99'
     time: 
