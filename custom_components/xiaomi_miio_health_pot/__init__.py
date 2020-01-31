@@ -4,7 +4,7 @@
 @Description   : run_status: 16(未放置杯体No kettle placed)0(正常)32(干烧保护Drycooking protection)48(两个错误一起)
 @Date          : 2019-12-15 17:14:14
 @LastEditors   : fineemb
-@LastEditTime  : 2020-01-31 21:38:14
+@LastEditTime  : 2020-01-31 23:46:43
 '''
 from collections import defaultdict
 import asyncio
@@ -432,7 +432,7 @@ def setup(hass, config):
         """Set mode.设置自定义模式"""
         try:
             miio_device = Device(host, token)
-            miio_device.send('set_mode', [kwargs["id"],kwargs["temp"],kwargs["time"]])
+            miio_device.send('set_mode', [kwargs["id"],kwargs["heat"],kwargs["time"]])
         except DeviceException:
             raise PlatformNotReady
 
