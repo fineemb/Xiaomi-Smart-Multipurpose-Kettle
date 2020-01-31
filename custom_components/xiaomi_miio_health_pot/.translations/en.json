@@ -1,0 +1,29 @@
+{
+    "state": {
+        "Herbal tea" :"Herbal tea",
+        "Fruit tea" :"Fruit tea",
+        "Simmered soup":"Simmered soup",
+        "Medicinal food":"Medicinal food",
+        "Congee":"Congee",
+        "Edible bird's nest":"Edible bird's nest",
+        "Hotpot":"Hotpot",
+        "boiled_water":"Boiled water",
+        "Warm milk":"Warm milk",
+        "Soft-boiled egg":"Soft-boiled egg",
+        "Yogurt":"Yogurt",
+        "Steamed egg":"Steamed egg",
+        "brewed_tea":"Brewed tea",
+        "Ganoderma":"Ganoderma",
+        "Disinfect":"Disinfect",
+        "Sweet soup":"Sweet soup",
+        "Custom1":"Custom1",
+        "Custom2":"Custom2",
+        "Custom3":"Custom3",
+        "Custom4":"Custom4",
+        "Custom5":"Custom5",
+        "Custom6":"Custom6",
+        "Custom7":"Custom7",
+        "Custom8":"Custom8",
+        "curr_tempe":"curr_tempe"
+    }
+}
