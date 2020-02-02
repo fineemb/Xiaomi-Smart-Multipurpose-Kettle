@@ -1,7 +1,7 @@
 {
   "domain": "health_pot",
   "name": "Mi Smart Multipurpose Kettle",
-  "documentation": "https://github.com/fineemb/Xiaomi-Health-pot",
+  "documentation": "https://github.com/fineemb/Xiaomi-Smart-Multipurpose-Kettle",
   "requirements": [
     "construct==2.9.45",
     "python-miio==0.4.8"

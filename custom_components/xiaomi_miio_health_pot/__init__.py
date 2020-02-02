@@ -4,7 +4,7 @@
 @Description   : run_status: 16(未放置杯体No kettle placed)0(正常)32(干烧保护Drycooking protection)48(两个错误一起)
 @Date          : 2019-12-15 17:14:14
 @LastEditors   : fineemb
-@LastEditTime  : 2020-01-31 23:46:43
+@LastEditTime  : 2020-02-02 22:03:56
 '''
 from collections import defaultdict
 import asyncio
@@ -192,7 +192,7 @@ def setup(hass, config):
 
         _LOGGER.error(
             "Unsupported device found! Please create an issue at "
-            "https://github.com/syssi/xiaomi_cooker/issues "
+            "https://github.com/fineemb/Xiaomi-Smart-Multipurpose-Kettle/issues "
             "and provide the following data: %s",
             model,
         )
