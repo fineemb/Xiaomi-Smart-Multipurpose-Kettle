@@ -1,16 +1,8 @@
-<!--
- * @Author        : fineemb
- * @Github        : https://github.com/fineemb
- * @Description   : 
- * @Date          : 2019-12-19 22:01:59
- * @LastEditors   : fineemb
- * @LastEditTime  : 2020-01-31 23:18:09
- -->
-# Xiaomi Smart Multipurpose Kettle
+# Xiaomi Mijia Multifunctional MJYSH01YM
 
 [![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg)](https://github.com/custom-components/hacs)
 
-This is a custom component for home assistant to integrate the Xiaomi Smart Multipurpose Kettle.
+This is a custom component for home assistant to integrate the Xiaomi Mijia Multifunctional MJYSH01YM.
 
 ![hacs_badge](https://imgservice1.suning.cn/uimg1/b2c/image/bL2eQvGQdSklY8VgCr4qTg.jpg_400w_400h_4e)
 
