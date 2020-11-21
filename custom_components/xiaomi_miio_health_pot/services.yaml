@@ -1,73 +1,63 @@
-# #############################################################################
-#   @Author        : fineemb
-#   @Github        : https://github.com/fineemb
-#   @Description   : 
-#   @Date          : 2019-09-07 02:58:01
-#   @LastEditors   : fineemb
-#   @LastEditTime  : 2020-01-31 23:10:39
-# #############################################################################
-
-
 set_voice:
-  description: 设置蜂鸣器。
+  description: 'Set the buzzer'
   fields:
     entity_id:
-      description: 指定养生壶ID.
+      description: 'Designated health pot ID.'
       example: 'health_pot.ysh'
     voice:
-      description: 设置开关,on/off.
+      description: 'Set switch, on/off.'
       example: 'on'
 set_work:
-  description: 指定工作模式,或者关闭。可以指定保温温度和时长,以及预约时间
+  description: 'Specify the working mode, or close. You can specify the heat preservation temperature and duration, as well as the appointment time.'
   fields:
     entity_id:
-      description: 指定养生壶ID.
+      description: 'Designated health pot ID.'
       example: 'health_pot.ysh'
     status:
-      description: 设置工作状态,1-5 ( 1:预约, 2:烹饪, 3:暂停, 4:保温, 5:终止).
+      description: 'Set the working status, 1-5 (1: Appointment, 2: Cooking, 3: Pause, 4: Keep warm, 5: Termination).'
       example: '2'
     id: 
-      description: 模式id,可以有24个模式.1-8以及11-26
-      example: '8'
+      description: 'Mode id, there can be 24 modes. 1-8 and 11-26'
+      example: '18'
     keep_temp: 
-      description: 保温温度,1-99
+      description: 'Holding temperature,1-99'
       example: '80'
     keep_time: 
-      description: 保温时长,单位为小时1-12
+      description: 'Holding time, the unit is hour 1-12'
       example: '12'
     timestamp: 
-      description: 预约指定开始时间的时间戳
+      description: 'The timestamp of the appointment start time'
       example: '1580483303'
 delete_modes:
-  description: 删除指定自定义模式
+  description: 'Delete the specified custom mode'
   fields:
     entity_id:
-      description: 指定养生壶ID.
+      description: 'Designated health pot ID.'
       example: 'health_pot.ysh'
     modes:
-      description: 模式id,有7个自定义模式.1-8
+      description: 'Mode id, there are 7 custom modes. 1-8'
       example: '1'
 set_mode_sort:
-  description: 设置模式排序
+  description: 'Set mode sort'
   fields:
     entity_id:
-      description: 指定养生壶ID.
+      description: 'Designated health pot ID.'
       example: 'health_pot.ysh'
     sort:
-      description: 所有模式ID的顺序
+      description: 'Order of all mode IDs'
       example: '11-12-13-23-15-16-17-18-20-26-21-14-19-25-24-22-1-2'
 set_mode:
-  description: 配置自定义模式属性。可以指定火力和时长
+  description: 'Configure custom mode properties. Can specify firepower and duration'
   fields:
     entity_id:
-      description: 指定养生壶ID.
+      description: 'Designated health pot ID.'
       example: 'health_pot.ysh'
     id: 
-      description: 模式id,可以有7个自定义模式.1-8
+      description: 'Mode id, there can be 7 custom modes. 1-8'
       example: '1'
     heat: 
-      description: 火力,1-99
+      description: 'Firepower,1-99'
       example: '99'
     time: 
-      description: 时长,单位为分钟
+      description: 'Duration, in minutes'
       example: '60'
