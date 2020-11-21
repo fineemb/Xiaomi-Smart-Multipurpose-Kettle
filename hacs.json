@@ -1,5 +1,5 @@
 {
-    "name": "Xiaomi Smart Multipurpose Kettle",
+    "name": "Xiaomi Mijia Multifunctional MJYSH01YM",
     "domains": ["health_pot"],
     "render_readme": true,
     "homeassistant": "0.99.9"
