@@ -45,11 +45,11 @@ Credits: Thanks to [Rytilahti](https://github.com/rytilahti/python-miio) for all
 * Chart
   - TODO: Temperature History (Like the temperature chart of the weather forecast)
 * Services
-  - TODO: set_voice
-  - TODO: set_work
-  - TODO: delete_modes
-  - TODO: set_mode_sort
-  - TODO: set_mode
+  - set_voice
+  - set_work
+  - delete_modes
+  - set_mode_sort
+  - set_mode
 
 ## Setup
 
