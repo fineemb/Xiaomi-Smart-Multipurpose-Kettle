@@ -1,0 +1,82 @@
+{
+    "title" : "Mi Smart Multipurpose Kettle",
+    "state" : {
+        "_": {
+            "stopped"     : "Ожидание",
+            "reservation" : "Встреча",
+            "cooking"     : "Приготовление",
+            "paused"      : "Пауза",
+            "keeping"     : "Поддержание температуры",
+            "stop"        : "Оcтановка"
+        }
+    },
+    "run_status":{
+        "On base"               : "Чайник на базе",
+        "No kettle placed"      : "Чайник не установлен",
+        "Drycooking protection" : "Защита от сухого приготовления",
+        "Both"                  : "И то и другое"
+    },
+    "mode": {
+        "Herbal tea"            : "Травяной чай",
+        "Fruit tea"             : "Фруктовый чай", 
+        "Simmered soup"         : "Солнечный Суп",   
+        "Medicinal food"        : "Лечебная диета",  
+        "Congee"                : "Рисовая каша",  
+        "Edible bird's nest"    : "Суп птичьи гнезда",
+        "Hotpot"                : "Поддержка температуры",
+        "Boiled water"          : "Кипяченая вода",
+        "Warm milk"             : "Теплое молоко",
+        "Soft-boiled egg"       : "Яйца всмятку",
+        "Yogurt"                : "Йогурт",  
+        "Steamed egg"           : "Яйца вкрутую",   
+        "brewed_tea"            : "Заварить чай",
+        "Ganoderma"             : "Грибы Ганодерма",
+        "Disinfect"             : "Дезинфекция",
+        "Sweet soup"            : "Сладкий суп",
+        "Custom1"               : "Пользовательски 1",
+        "Custom2"               : "Пользовательски 2",
+        "Custom3"               : "Пользовательски 3",
+        "Custom4"               : "Пользовательски 4",
+        "Custom5"               : "Пользовательски 5",
+        "Custom6"               : "Пользовательски 6",
+        "Custom7"               : "Пользовательски 7",
+        "Custom8"               : "Пользовательски 8"
+    },
+    "state_attributes": {
+            "run_status":{
+                "On base"               : "Чайник на базе",
+                "No kettle placed"      : "Чайник не установлен",
+                "Drycooking protection" : "Защита от сухого приготовления",
+                "Both"                  : "И то и другое"
+                },
+        "health_pot": {
+            "mode": {
+                "Herbal tea" : "Травяной чай",
+                "Fruit tea" : "Фруктовый чай", 
+                "Simmered soup" : "Солнечный Суп",   
+                "Medicinal food" : "Лечебная диета",  
+                "Congee" : "Рисовая каша",  
+                "Edible bird's nest" : "Суп птичьи гнезда",
+                "Hotpot" : "Поддержка температуры",
+                "Boiled water" : "Кипяченая вода",
+                "Warm milk" : "Теплое молоко",
+                "Soft-boiled egg" : "Яйца всмятку",
+                "Yogurt" : "Йогурт",  
+                "Steamed egg" : "Яйца вкрутую",   
+                "brewed_tea" : "Заварить чай",
+                "Ganoderma" : "Грибы Ганодерма",
+                "Disinfect" : "Дезинфекция",
+                "Sweet soup" : "Сладкий суп",
+                "Custom1" : "Пользовательски 1",
+                "Custom2" : "Пользовательски 2",
+                "Custom3" : "Пользовательски 3",
+                "Custom4" : "Пользовательски 4",
+                "Custom5" : "Пользовательски 5",
+                "Custom6" : "Пользовательски 6",
+                "Custom7" : "Пользовательски 7",
+                "Custom8" : "Пользовательски 8"
+                }
+        }
+    }
+	
+}

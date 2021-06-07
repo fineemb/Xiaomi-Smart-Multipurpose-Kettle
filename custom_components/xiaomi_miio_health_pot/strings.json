@@ -1,0 +1,45 @@
+{
+    "title" : "Mi Smart Multipurpose Kettle",
+    "state" : {
+        "_": {
+            "stopped"       : "Stopped",
+            "reservation"   : "Reservation",
+            "cooking"       : "Cooking",
+            "paused"        : "Paused",
+            "keeping"       : "Keeping",
+            "stop"          : "Stop"
+        }
+    },
+    "mode": {
+        "herbal_tea"         : "Herbal tea",
+        "fruit_tea"          : "Fruit tea",
+        "simmered_soup"      : "Simmered soup",
+        "medicinal_food"     : "Medicinal food",
+        "congee"             : "Congee",
+        "edible_bird_nest"   : "Edible bird's nest",
+        "hotpot"             : "Hotpot",
+        "boiled_water"       : "Boiled water",
+        "warm_milk"          : "Warm milk",
+        "soft_boiled_egg"    : "Soft-boiled egg",
+        "yogurt"             : "Yogurt",
+        "steamed_egg"        : "Steamed egg",
+        "brewed_tea"         : "brewed_tea",
+        "ganoderma"          : "Ganoderma",
+        "disinfect"          : "Disinfect",
+        "sweet_soup"         : "Sweet soup", 
+        "custom1"            : "Custom1",
+        "custom2"            : "Custom2",
+        "custom3"            : "Custom3", 
+        "custom4"            : "Custom4", 
+        "custom5"            : "Custom5", 
+        "custom6"            : "Custom6", 
+        "custom7"            : "Custom7", 
+        "custom8"            : "Custom8" 
+    },
+    "run_status":{
+        "on_base"               : "On base",
+        "no_kettle_placed"      : "No kettle placed",
+        "drycooking_protection" : "Drycooking protection",
+        "both"                  : "Both"
+    }
+}

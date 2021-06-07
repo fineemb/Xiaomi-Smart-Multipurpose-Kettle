@@ -1,11 +1,3 @@
-'''
-@Author        : fineemb
-@Github        : https://github.com/fineemb
-@Description   : run_status: 16(未放置杯体No kettle placed)0(正常)32(干烧保护Drycooking protection)48(两个错误一起)
-@Date          : 2019-12-15 17:14:14
-@LastEditors   : fineemb
-@LastEditTime  : 2020-02-02 22:03:56
-'''
 from collections import defaultdict
 import asyncio
 from datetime import timedelta
@@ -35,45 +27,56 @@ _LOGGER = logging.getLogger(__name__)
 DEFAULT_NAME = "Mi Smart Multipurpose Kettle"
 DOMAIN = "health_pot"
 DATA_KEY = "health_pot_data"
-DATA_TEMPERATURE_HISTORY = "temperature_history"
-DATA_STATE = "state"
 
-STATE_1 = "1"
-STATE_2 = "2"
-STATE_3 = "3"
-STATE_4 = "4"
-STATE_5 = "5"
-
-MODE_11 = "Herbal tea" # 花草茶
-MODE_12 = "Fruit tea" # 水果茶
-MODE_13 = "Simmered soup" # 煲汤
-MODE_14 = "Medicinal food" # 药膳
-MODE_15 = "Congee" # 粥品
-MODE_16 = "Edible bird's nest" # 燕窝
-MODE_17 = "Hotpot" # 火锅
-MODE_18 = "boiled_water" # 烧水
-MODE_19 = "Warm milk" # 温奶
-MODE_20 = "Soft-boiled egg" # 温泉蛋
-MODE_21 = "Yogurt" # 酸奶
-MODE_22 = "Steamed egg" # 蒸水蛋
-MODE_23 = "brewed_tea" # 煮茶
-MODE_24 = "Ganoderma" # 灵芝
-MODE_25 = "Disinfect" # 消毒
-MODE_26 = "Sweet soup" # 糖水
-MODE_1 = "Custom1" # 自定义1
-MODE_2 = "Custom2" # 自定义2
-MODE_3 = "Custom3" # 自定义3
-MODE_4 = "Custom4" # 自定义4
-MODE_5 = "Custom5" # 自定义5
-MODE_6 = "Custom6" # 自定义6
-MODE_7 = "Custom7" # 自定义7
-MODE_8 = "Custom8" # 自定义8
 
 SERVICE_SET_VOICE = "set_voice"
 SERVICE_SET_WORK = "set_work"
 SERVICE_DELETE_MODES = "delete_modes"
 SERVICE_SET_MODE_SORT = "set_mode_sort"
 SERVICE_SET_MODE = "set_mode"
+
+AVAILABLE_STATE = {
+    0 : "stopped",
+    1 : "reservation",
+    2 : "cooking",
+    3 : "paused",
+    4 : "keeping",
+    5 : "stop"
+}
+
+AVAILABLE_RUN_STATUS = {
+    0  : "Чайник на базе",
+    16 : "Чайник не установлен",
+    32 : "Защита от сухого приготовления",
+    48 : "И то и другое"
+}
+
+AVAILABLE_MODE = {
+    11 : "Травяной чай",
+    12 : "Фруктовый чай", 
+    13 : "Солнечный Суп",   
+    14 : "Лечебная диета",  
+    15 : "Рисовая каша",  
+    16 : "Суп птичьи гнезда",
+    17 : "Поддержка температуры",
+    18 : "Кипяченая вода",
+    19 : "Теплое молоко",
+    20 : "Яйца всмятку",
+    21 : "Йогурт",  
+    22 : "Яйца вкрутую",   
+    23 : "Заварить чай",
+    24 : "Грибы Ганодерма",
+    25 : "Дезинфекция",
+    26 : "Сладкий суп",
+    1  : "Пользовательски 1",
+    2  : "Пользовательски 2",
+    3  : "Пользовательски 3",
+    4  : "Пользовательски 4",
+    5  : "Пользовательски 5",
+    6  : "Пользовательски 6",
+    7  : "Пользовательски 7",
+    8  : "Пользовательски 8"
+}
 
 ATTR_MODEID = "id"
 ATTR_MODETEMP = "temp"
@@ -102,9 +105,7 @@ CONFIG_SCHEMA = vol.Schema(
         DOMAIN: vol.Schema(
             {
                 vol.Required(CONF_HOST): cv.string,
-                vol.Required(CONF_TOKEN): vol.All(
-                    cv.string, vol.Length(min=32, max=32)
-                ),
+                vol.Required(CONF_TOKEN): vol.All(cv.string, vol.Length(min=32, max=32)),
                 vol.Optional(CONF_NAME, default=DEFAULT_NAME): cv.string,
                 vol.Optional(CONF_MODEL): vol.In(SUPPORTED_MODELS),
                 vol.Optional(CONF_SCAN_INTERVAL, default=SCAN_INTERVAL): cv.time_period,
@@ -124,9 +125,9 @@ SERVICE_SCHEMA_SET_WORK = vol.Schema({
     vol.Required(ATTR_ENTITY_ID): cv.entity_id,
     vol.Required(ATTR_WORK_STATUS): vol.All(vol.Coerce(int), vol.Range(min=1, max=5)),
     vol.Required(ATTR_WORK_MODEID): vol.All(vol.Coerce(int), vol.Range(min=1, max=26)),
-    vol.Required(ATTR_WORK_KTEMP): vol.All(vol.Coerce(int), vol.Range(min=40, max=95)),
-    vol.Required(ATTR_WORK_KTIME): vol.All(vol.Coerce(int), vol.Range(min=1, max=12)),
-    vol.Required(ATTR_WORK_TS, default=0): vol.All(vol.Coerce(int))
+    vol.Optional(ATTR_WORK_KTEMP, default=0): vol.All(vol.Coerce(int), vol.Range(min=0, max=95)),
+    vol.Optional(ATTR_WORK_KTIME, default=0): vol.All(vol.Coerce(int), vol.Range(min=0, max=12)),
+    vol.Optional(ATTR_WORK_TS, default=0): vol.All(vol.Coerce(int))
 })
 
 SERVICE_SCHEMA_DEL_MODES = vol.Schema({
@@ -158,7 +159,7 @@ SERVICE_START = "start"
 SERVICE_STOP = "stop"
 
 def setup(hass, config):
-    from miio import Device, DeviceException
+#    from miio import Device, DeviceException
     if DOMAIN not in hass.data:
         hass.data[DOMAIN] = {}
     host = config[DOMAIN][CONF_HOST]
@@ -205,7 +206,7 @@ def setup(hass, config):
 
             run_status    =  miio_device.send('get_prop', ["run_status"])[0]
             work_status   =  miio_device.send('get_prop', ["work_status"])[0]
-            warm_data     =  miio_device.send('get_prop', ["warm_data"])[0]
+            #warm_data     =  miio_device.send('get_prop', ["warm_data"])[0]
             last_time     =  miio_device.send('get_prop', ["last_time"])[0]
             last_temp     =  miio_device.send('get_prop', ["last_temp"])[0]
             curr_tempe    =  miio_device.send('get_prop', ["curr_tempe"])[0]
@@ -219,159 +220,15 @@ def setup(hass, config):
             cooked_time   =  miio_device.send('get_prop', ["cooked_time"])[0]
             voice         =  miio_device.send('get_prop', ["voice"])[0]
             stand_top_num =  miio_device.send('get_prop', ["stand_top_num"])[0]
-            mode_sort     =  miio_device.send('get_prop', ["mode_sort"])[0]
-
-            __run_status = int(run_status)
-            __work_status = int(work_status)
-            __last_time = int(last_time)
-            __last_temp = int(last_temp)
-            __curr_tempe = int(curr_tempe)
-            __work_status_cn = None
-            __mode_cn = None
-            __mode_en = None
-            __mode = int(mode)
-            __heat_power = int(heat_power)
-            __warm_time = int(warm_time)
-            __cook_time = int(cook_time)
-            __left_time = int(left_time)
-            __cook_status = int(cook_status)
-            __cooked_time = int(cooked_time)
-            __voice = int(voice)
-            __stand_top_num = int(stand_top_num)
-            __mode_sort = str(mode_sort)
-            __warm_data = str(warm_data)
-            # __work_temps = int(work_temps)
-
-            if work_status == 1:
-                # 预约
-                __current_operation = STATE_1
-                __work_status_cn = "预约"
-            elif work_status == 2:
-                # 烹饪
-                __current_operation = STATE_2
-                __work_status_cn = "烹饪"
-            elif work_status == 3:
-                # 暂停
-                __current_operation = STATE_3
-                __work_status_cn = "暂停"
-            elif work_status == 4:
-                # 保温
-                __current_operation = STATE_4
-                __work_status_cn = "保温"
-            elif work_status == 5:
-                # 终止
-                __current_operation = STATE_4
-                __work_status_cn = "终止"
-
-            if mode == 11:
-                # 花草茶
-                __mode_en = MODE_11
-                __mode_cn = "花草茶"
-            elif mode == 12:
-                # 水果茶
-                __mode_en = MODE_12
-                __mode_cn = "水果茶"
-            elif mode == 13:
-                # 煲汤
-                __mode_en = MODE_13
-                __mode_cn = "煲汤"
-            elif mode == 14:
-                # 药膳
-                __mode_en = MODE_14
-                __mode_cn = "药膳"
-            elif mode == 15:
-                # 粥品
-                __mode_en = MODE_15
-                __mode_cn = "粥品"
-            elif mode == 16:
-                # 燕窝
-                __mode_en = MODE_16
-                __mode_cn = "燕窝"
-            elif mode == 17:
-                # 火锅
-                __mode_en = MODE_17
-                __mode_cn = "火锅"
-            elif mode == 18:
-                # 烧水
-                __mode_en = MODE_18
-                __mode_cn = "烧水"
-            elif mode == 19:
-                # 温奶
-                __mode_en = MODE_19
-                __mode_cn = "温奶"
-            elif mode == 20:
-                # 温泉蛋
-                __mode_en = MODE_20
-                __mode_cn = "温泉蛋"
-            elif mode == 21:
-                # 酸奶
-                __mode_en = MODE_21
-                __mode_cn = "酸奶"
-            elif mode == 22:
-                # 蒸水蛋
-                __mode_en = MODE_22
-                __mode_cn = "蒸水蛋"
-            elif mode == 23:
-                # 煮茶
-                __mode_en = MODE_23
-                __mode_cn = "煮茶"
-            elif mode == 24:
-                # 灵芝
-                __mode_en = MODE_24
-                __mode_cn = "灵芝"
-            elif mode == 25:
-                # 消毒
-                __mode_en = MODE_25
-                __mode_cn = "消毒"
-            elif mode == 26:
-                # 糖水
-                __mode_en = MODE_26
-                __mode_cn = "糖水"
-            elif mode == 1:
-                # 自定义
-                __mode_en = MODE_1
-                __mode_cn = "自定义1"
-            elif mode == 2:
-                # 自定义
-                __mode_en = MODE_2
-                __mode_cn = "自定义2"
-            elif mode == 3:
-                # 自定义
-                __mode_en = MODE_3
-                __mode_cn = "自定义3"
-            elif mode == 4:
-                # 自定义
-                __mode_en = MODE_4
-                __mode_cn = "自定义4"
-            elif mode == 5:
-                # 自定义
-                __mode_en = MODE_5
-                __mode_cn = "自定义5"
-            elif mode == 6:
-                # 自定义
-                __mode_en = MODE_6
-                __mode_cn = "自定义6"
-            elif mode == 7:
-                # 自定义
-                __mode_en = MODE_7
-                __mode_cn = "自定义7"
-            elif mode == 8:
-                # 自定义
-                __mode_en = MODE_8
-                __mode_cn = "自定义8"
+            #mode_sort     =  miio_device.send('get_prop', ["mode_sort"])[0]
 
             __state_attrs = {
-                "run_status":run_status,
-                "work_status":work_status,
-                "work_status_cn":__work_status_cn,
-                "warm_data":warm_data,
+                "run_status":AVAILABLE_RUN_STATUS[int(run_status)],
+                "mode":AVAILABLE_MODE[int(mode)],
                 "last_time":last_time,
                 "last_temp":last_temp,
                 "curr_tempe":curr_tempe,
                 # "work_temps":work_temps,
-                "mode":mode,
-                "mode_en":__mode_en,
-                "mode_cn":__mode_cn,
                 "heat_power":heat_power,
                 "warm_time":warm_time,
                 "cook_time":cook_time,
@@ -380,13 +237,14 @@ def setup(hass, config):
                 "cooked_time":cooked_time,
                 "voice":voice,
                 "stand_top_num":stand_top_num,
-                "mode_sort":mode_sort,
+                #"mode_sort":mode_sort,
+                #"warm_data":warm_data,
                 "friendly_name":name
             }
 
             unique_id = "{}_{}".format("xiaomi", miio_device.info().mac_address.replace(':', ''))
             entityid = "{}.{}".format(DOMAIN,unique_id)
-            hass.states.set(entityid, work_status, __state_attrs)
+            hass.states.set(entityid, AVAILABLE_STATE[int(work_status)], __state_attrs)
 
         except DeviceException:
             _LOGGER.exception('Fail to get_prop from XiaomiHealthPot')

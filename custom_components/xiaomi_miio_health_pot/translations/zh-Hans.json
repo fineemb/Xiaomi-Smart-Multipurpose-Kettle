@@ -1,0 +1,13 @@
+{
+    "title" : "Xiaomi Mijia Multifunctional MJYSH01YM",
+    "state" : {
+        "_": {
+            "stopped"     : "Ожидание",
+            "reservation" : "Встреча",
+            "cooking"     : "Приготовление",
+            "paused"      : "Пауза",
+            "keeping"     : "Поддержание температуры",
+            "stop"        : "Оcтановка"
+        }
+    }
+}
