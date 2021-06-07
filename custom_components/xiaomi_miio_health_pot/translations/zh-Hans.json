@@ -1,13 +1,82 @@
 {
-    "title" : "Xiaomi Mijia Multifunctional MJYSH01YM",
+    "title" : "小米智能养生壶",
     "state" : {
         "_": {
-            "stopped"     : "Ожидание",
-            "reservation" : "Встреча",
-            "cooking"     : "Приготовление",
-            "paused"      : "Пауза",
-            "keeping"     : "Поддержание температуры",
-            "stop"        : "Оcтановка"
+            "stopped"     : "已停止",
+            "reservation" : "预约",
+            "cooking"     : "烹饪",
+            "paused"      : "暂停",
+            "keeping"     : "保温",
+            "stop"        : "停止"
+        }
+    },
+    "run_status":{
+        "On base"               : "正确放置",
+        "No kettle placed"      : "未放置杯体",
+        "Drycooking protection" : "干煮保护",
+        "Both"                  : "两者"
+    },
+    "mode": {
+        "Herbal tea"            : "花草茶",
+        "Fruit tea"             : "水果茶", 
+        "Simmered soup"         : "煲汤",   
+        "Medicinal food"        : "药膳",  
+        "Congee"                : "粥品",  
+        "Edible bird's nest"    : "燕窝",
+        "Hotpot"                : "火锅",
+        "Boiled water"          : "烧水",
+        "Warm milk"             : "温奶",
+        "Soft-boiled egg"       : "温泉蛋",
+        "Yogurt"                : "酸奶",  
+        "Steamed egg"           : "蒸水蛋",   
+        "brewed_tea"            : "煮茶",
+        "Ganoderma"             : "灵芝",
+        "Disinfect"             : "消毒",
+        "Sweet soup"            : "糖水",
+        "Custom1"               : "自定义1",
+        "Custom2"               : "自定义2",
+        "Custom3"               : "自定义3",
+        "Custom4"               : "自定义4",
+        "Custom5"               : "自定义5",
+        "Custom6"               : "自定义6",
+        "Custom7"               : "自定义7",
+        "Custom8"               : "自定义8"
+    },
+    "state_attributes": {
+            "run_status":{
+                "On base"               : "正确放置",
+                "No kettle placed"      : "未放置杯体",
+                "Drycooking protection" : "干煮保护",
+                "Both"                  : "两者"
+                },
+        "health_pot": {
+            "mode": {
+                "Herbal tea"            : "花草茶",
+                "Fruit tea"             : "水果茶", 
+                "Simmered soup"         : "煲汤",   
+                "Medicinal food"        : "药膳",  
+                "Congee"                : "粥品",  
+                "Edible bird's nest"    : "燕窝",
+                "Hotpot"                : "火锅",
+                "Boiled water"          : "烧水",
+                "Warm milk"             : "温奶",
+                "Soft-boiled egg"       : "温泉蛋",
+                "Yogurt"                : "酸奶",  
+                "Steamed egg"           : "蒸水蛋",   
+                "brewed_tea"            : "煮茶",
+                "Ganoderma"             : "灵芝",
+                "Disinfect"             : "消毒",
+                "Sweet soup"            : "糖水",
+                "Custom1"               : "自定义1",
+                "Custom2"               : "自定义2",
+                "Custom3"               : "自定义3",
+                "Custom4"               : "自定义4",
+                "Custom5"               : "自定义5",
+                "Custom6"               : "自定义6",
+                "Custom7"               : "自定义7",
+                "Custom8"               : "自定义8"
+                }
         }
     }
+	
 }
