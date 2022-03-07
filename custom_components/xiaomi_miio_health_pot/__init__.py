@@ -123,7 +123,7 @@ SERVICE_SCHEMA_SET_MODE = vol.Schema({
 })
 SERVICE_SCHEMA_SET_WORK = vol.Schema({
     vol.Required(ATTR_ENTITY_ID): cv.entity_id,
-    vol.Required(ATTR_WORK_STATUS): vol.All(vol.Coerce(int), vol.Range(min=1, max=5)),
+    vol.Required(ATTR_WORK_STATUS): vol.All(vol.Coerce(int), vol.Range(min=0, max=5)),
     vol.Required(ATTR_WORK_MODEID): vol.All(vol.Coerce(int), vol.Range(min=1, max=26)),
     vol.Optional(ATTR_WORK_KTEMP, default=0): vol.All(vol.Coerce(int), vol.Range(min=0, max=95)),
     vol.Optional(ATTR_WORK_KTIME, default=0): vol.All(vol.Coerce(int), vol.Range(min=0, max=12)),
