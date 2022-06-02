@@ -1,6 +1,6 @@
 # Xiaomi Mijia Multifunctional MJYSH01YM
 
-[![hacs_badge](https://img.shields.io/badge/HACS-Custom-orange.svg)](https://github.com/custom-components/hacs)
+[![hacs_badge](https://img.shields.io/badge/HACS-Custom-orange.svg)](https://github.com/hacs/integration)
 [![Donate](https://img.shields.io/badge/donate-Yandex-red.svg)](https://yoomoney.ru/to/410017564864143)
 
 This is a custom component for home assistant to integrate the Xiaomi Mijia Multifunctional MJYSH01YM.
